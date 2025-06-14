@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>راهنمای تدوین گزارش هفتگی پروژه</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-Variable-font-face.css">
+    <style>
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            direction: rtl;
+            text-align: right;
+            margin: 0;
+            padding: 10px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 40%; /* عرض صفحه ۸۰ درصد باشه (مورد از پیش ذخیره شده) */
+            margin: 20px auto;
+            border: 2px solid #000080; /* کادر سورمه‌ای */
+            border-radius: 8px;
+            padding: 20px; /* پدینگ داخلی کانتینر */
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            min-height: 650px; /* ارتفاع حداقل ثابت */
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .title-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-shrink: 0;
+        }
+        .title {
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #000080;
+            padding: 8px 12px;
+            border-radius: 5px;
+            text-align: center;
+            white-space: nowrap;
+        }
+        h2 {
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 5px;
+            margin-bottom: 8px;
+        }
+        p, li {
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 12px;
+            line-height: 1.7; /* **بازگرداندن line-height به مقدار اولیه** */
+            color: #555;
+            margin-bottom: 3px;
+        }
+        ul {
+            list-style-type: decimal;
+            padding-right: 20px;
+            margin-bottom: 6px;
+        }
+        ul.powerpoint-slides-list {
+            list-style-type: decimal;
+            padding-right: 25px;
+        }
+        ul.approval-list {
+            list-style-type: disc;
+            padding-right: 25px;
+        }
+        .button-group {
+            overflow: hidden;
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 0px;
+            flex-shrink: 0;
+        }
+        .step-button {
+            background-color: transparent;
+            border: none;
+            color: #000080;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0 10px;
+            margin: 0;
+            line-height: 1;
+            transition: all 0.2s ease-in-out;
+        }
+        .prev-step-button {
+            color: #6c757d;
+        }
+        .step-button:hover {
+            opacity: 0.7;
+        }
+        .next-button-final {
+            background-color: #000080 !important;
+            color: white !important;
+            font-size: 12px !important;
+            font-weight: normal !important;
+            padding: 10px 18px !important;
+            border-radius: 5px !important;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        /* Style for the download button - Glassmorphism/Transparent */
+        .download-button {
+            background-color: rgba(0, 0, 128, 0.2);
+            color: #000080;
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 12px;
+            padding: 5px 15px;
+            border: 1px solid rgba(0, 0, 128, 0.4);
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            width: fit-content;
+            margin: 10px auto 0;
+            transition: background-color 0.1s ease-in-out, transform 0.1s ease-in-out, box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        .download-button:hover {
+            background-color: rgba(0, 0, 128, 0.3);
+            border-color: rgba(0, 0, 128, 0.6);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .download-button:active {
+            background-color: rgba(0, 0, 128, 0.4);
+            transform: translateY(2px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 128, 0.8);
+        }
+        /* Style for the added image */
+        .bottom-image {
+            max-width: 90%;
+            height: auto;
+            display: block;
+            margin: 10px auto 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-content {
+            display: none;
+            width: 100%;
+            padding: 0;
+            box-sizing: border-box;
+            flex-grow: 1;
+            /* overflow-y: auto; */
+        }
+        .step-content.active {
+            display: block;
+        }
+
+        .website-link {
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 12px;
+            color: #000080;
+            text-decoration: none;
+            margin: 0 10px;
+            white-space: nowrap;
+        }
+        .website-link:hover {
+            text-decoration: underline;
+            opacity: 0.8;
+        }
+
+
+        /* --- Media Queries for Responsive Design --- */
+        @media (max-width: 768px) {
+            .container {
+                width: 70%;
+                padding: 18px;
+            }
+            .title {
+                font-size: 17px;
+            }
+            h2 {
+                font-size: 15px;
+                margin-bottom: 6px;
+            }
+            p, li {
+                font-size: 11.5px;
+                line-height: 1.7; /* **بازگرداندن line-height به مقدار اولیه در Media Query** */
+                margin-bottom: 2px;
+            }
+            ul {
+                margin-bottom: 4px;
+            }
+            .step-button {
+                font-size: 28px;
+            }
+            .website-link {
+                font-size: 11px;
+            }
+            .next-button-final, .download-button {
+                font-size: 11.5px !important;
+            }
+            .bottom-image {
+                max-width: 90%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+            .container {
+                width: 95%;
+                margin: 10px auto;
+                padding: 15px;
+            }
+            .title {
+                font-size: 16px;
+            }
+            h2 {
+                font-size: 14.5px;
+                margin-bottom: 5px;
+            }
+            p, li {
+                font-size: 11px;
+                line-height: 1.7; /* **بازگرداندن line-height به مقدار اولیه در Media Query** */
+                margin-bottom: 1px;
+            }
+            ul {
+                margin-bottom: 3px;
+            }
+            .step-button {
+                font-size: 26px;
+            }
+            .website-link {
+                font-size: 10px;
+            }
+            .next-button-final, .download-button {
+                font-size: 11px !important;
+            }
+            .bottom-image {
+                max-width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="title-wrapper">
+            <span class="title" id="mainTitle"></span>
+        </div>
+
+        <div id="step1" class="step-content active">
+            <h2>گام ۱: جمع‌آوری اطلاعات شناسنامه‌ای پروژه</h2>
+            <p>کارشناس محترم کنترل پروژه،</p>
+            <p>برای تهیه گزارش‌هفتگی، لطفاً اطلاعات شناسنامه‌ای پروژه شامل موارد زیر را از اسناد موجود جمع‌آوری کنید:</p>
+            <ul>
+                <li>عنوان گزارش (مانند: گزارش‌هفتگی از تاریخ 1404/03/13 تا تاریخ 1404/03/19)</li>
+                <li>نام کارفرما (مانند: شرکت تامین مسکن فرهنگیان)</li>
+                <li>نام پیمانکار (شرکت آبمو اسپاد)</li>
+                <li>تاریخ شروع گزارش (تاریخ شروع هفته جاری)</li>
+                <li>تاریخ پایان گزارش (تاریخ پایان هفته جاری)</li>
+                <li>شماره قرارداد (مانند: 711/22688)</li>
+                <li>کاربری پروژه (مانند: مسکونی)</li>
+                <li>مدت اولیه پیمان (مانند: 29 ماه)</li>
+                <li>تاریخ شروع کل پروژه (مانند: 1402/12/28)</li>
+                <li>تاریخ پایان کل پروژه (مانند: 1405/06/21)</li>
+                <li>مساحت مسکونی (زیربنا) (مانند: متراژ تقریبی 17000 متر مربع)</li>
+                <li>تعداد طبقات (مانند: 9 طبقه شامل 8 طبقه مثبت، یک طبقه منفی)</li>
+                <li>تعداد بلوک، واحد و پارکینگ (مانند: 2 بلوک، 112 واحد، 131 پارکینگ)</li>
+            </ul>
+            <p>پس از جمع‌آوری این اطلاعات، آماده‌سازی گزارش را شروع کنید...</p>
+        </div>
+
+        <div id="step2" class="step-content">
+            <h2>گام ۲: آماده‌سازی سایر بخش‌های گزارش</h2>
+            <p>عالیه! اکنون شما اطلاعات اصلی پروژه را گردآوری کردید. در این گام باید سایر بخش‌های گزارش را آماده کنید:</p>
+            <ul>
+                <li>**خلاصه اجرایی:** یک پاراگراف کوتاه شامل مهمترین نکات پیشرفت پروژه در هفته.</li>
+                <li>**ساختار شکست (WBS)**</li>
+                <li>**نمودار پیشرفت (S-Curve)**</li>
+                <li>**تایم لاین پروژه:** خط زمانی پروژه شامل تاریخ شروع و پایان کل پروژه.</li>
+                <li>**موانع و مشکلات اجرایی:** فهرست کردن اهم موانع و مشکلات موجود در اجرای پروژه.</li>
+                <li>**نامه‌های ارسالی و دریافتی:** فهرست نامه‌های ارسالی و دریافتی</li>
+                <li>**آمار نیروی انسانی مستقیم و غیرمستقیم**</li>
+                <li>**تصاویر پیشرفت کار از مراحل مختلف پیشرفت فیزیکی پروژه**</li>
+                <li>**موقعیت جغرافیایی و سایت پلان:** در صورت نیاز، نقشه‌های مربوطه را ضمیمه کنید.</li>
+            </ul>
+            <p>پس از آماده‌سازی بخش‌های مختلف گزارش تدوین آن را شروع کنید...</p>
+        </div>
+
+        <div id="step3" class="step-content">
+            <h2>گام ۳: ترتیب اسلایدهای گزارش‌هفتگی در پاورپوینت</h2>
+            <p>اکنون که تمامی اطلاعات و بخش‌های گزارش را آماده کردید، لطفاً آن‌ها را در قالب یک فایل **پاورپوینت** با **ترتیب اسلایدهای زیر** تنظیم و نهایی کنید:</p>
+            <ul class="powerpoint-slides-list">
+                <li>**اسلاید 1:** عنوان گزارش، نام کارفرما و پیمانکار.</li>
+                <li>**اسلاید 2:** شناسنامه پروژه (شامل تمام موارد جمع‌آوری شده در گام ۱).</li>
+                <li>**اسلاید 3:** موقعیت جغرافیایی.</li>
+                <li>**اسلاید 4:** سایت پلان پروژه.</li>
+                <li>**اسلاید 5 و 6:** اطلاعات مربوط به Cost و نمودار S-Curve (در صورت وجود).</li>
+                <li>**اسلاید 7:** ساختار شکست (WBS).</li>
+                <li>**اسلاید 8:** تایم لاین پروژه.</li>
+                <li>**اسلاید 9:** اهم موانع و مشکلات اجرایی.</li>
+                <li>**اسلاید 10:** نامه‌های ارسالی و دریافتی.</li>
+                <li>**اسلاید 11:** نیروی انسانی و اجرایی پروژه.</li>
+                <li>**تصاویر پیشرفت کار**</li>
+            </ul>
+            <p>با تکمیل این گام، به مرحله نهایی یعنی گرفتن تاییدیه‌ها و تهیه نسخه‌های گزارش می‌رویم.</p>
+        </div>
+
+        <div id="step4" class="step-content">
+            <h2>گام ۴: دریافت تاییدیه و تهیه نسخه‌های گزارش</h2>
+            <p>در این مرحله نهایی، لطفاً برای گزارش تهیه شده، تاییدیه‌ها و امضاهای زیر را دریافت کنید:</p>
+            <ul class="approval-list">
+                <li>تایید سرپرست کارگاه</li>
+                <li>تایید مدیر پروژه</li>
+            </ul>
+            <p>سپس، از گزارش تایید شده، سه نسخه برای ارائه به مراکز زیر تهیه کنید:</p>
+            <ul class="approval-list">
+                <li>دفتر مرکزی</li>
+                <li>کارفرما</li>
+                <li>بایگانی</li>
+            </ul>
+            <p>با انجام این گام، فرآیند تهیه و تدوین گزارش هفتگی پروژه به طور کامل به پایان می‌رسد. با تشکر از شما</p>
+            <a href="https://docs.google.com/presentation/d/1jeb8ctOwcYkWjZIQoG-7tW_QBRWmaMJa/edit?usp=sharing&ouid=107125185756367308989&rtpof=true&sd=true" target="_blank" class="download-button">دانلود نمونه گزارش</a>
+            <img src="https://abmospad.com/wp-content/uploads/2025/04/%D8%A8%D9%86%D8%B1-%DA%A9%D8%A7%D8%B1%D8%A2%D9%85%D8%AF-%D8%A8%D9%87-%D9%88%D8%B3%D8%B9%D8%AA-%DB%8C%DA%A9-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86-%D8%B3%D8%A7%DB%8C%D8%AA-copy.jpg" alt="بندر کارآمد به وسعت یک ایران" class="bottom-image">
+        </div>
+
+        <div class="button-group">
+            <button class="step-button prev-step-button" onclick="goToPrevStep()" id="prevButton">«</button>
+            <a href="https://www.abmospad.com/" target="_blank" class="website-link">www.abmospad.com</a>
+            <button class="step-button" onclick="goToNextStep()" id="nextButton">»</button>
+        </div>
+
+    </div>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 4;
+        const mainTitleElement = document.getElementById('mainTitle');
+
+        function showStep(stepNumber) {
+            document.querySelectorAll('.step-content').forEach(step => {
+                step.classList.remove('active');
+            });
+
+            if (stepNumber === 1) {
+                document.getElementById('step1').classList.add('active');
+            } else if (stepNumber === 2) {
+                document.getElementById('step2').classList.add('active');
+            } else if (stepNumber === 3) {
+                document.getElementById('step3').classList.add('active');
+            } else if (stepNumber === 4) {
+                document.getElementById('step4').classList.add('active');
+            }
+
+            mainTitleElement.textContent = `گام ${stepNumber} از ${totalSteps}: راهنمای تدوین گزارش‌هفتگی پروژه`;
+
+            const prevButton = document.getElementById('prevButton');
+            const nextButton = document.getElementById('nextButton');
+
+            if (stepNumber === 1) {
+                prevButton.style.visibility = 'hidden';
+            } else {
+                prevButton.style.visibility = 'visible';
+            }
+
+            if (stepNumber === totalSteps) {
+                nextButton.classList.add('next-button-final');
+                nextButton.textContent = 'گام اول';
+                nextButton.style.fontSize = '12px';
+                nextButton.style.fontWeight = 'normal';
+            } else {
+                nextButton.classList.remove('next-button-final');
+                nextButton.textContent = '»';
+                nextButton.style.fontSize = '30px';
+                nextButton.style.padding = '0 10px';
+                nextButton.style.backgroundColor = 'transparent';
+                nextButton.style.color = '#000080';
+                nextButton.style.borderRadius = '0';
+                nextButton.style.fontWeight = 'bold';
+            }
+        }
+
+        function goToNextStep() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                showStep(currentStep);
+            } else {
+                currentStep = 1;
+                showStep(currentStep);
+            }
+        }
+
+        function goToPrevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+            }
+            showStep(currentStep);
+        }
+
+        showStep(currentStep);
+    </script>
+
+</body>
+</html>
